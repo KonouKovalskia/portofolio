@@ -174,7 +174,7 @@ export default function Contact() {
             className="font-mono text-xs tracking-wider"
             style={{ color: '#6b6b8a' }}
           >
-            © 2026 Konou · Built with Next.js · Deployed on Vercel
+            © 2026 Muhammad Faiz Ghiffari · Built with Next.js · Deployed on Vercel
           </div>
           <div
             className="font-mono text-xs"

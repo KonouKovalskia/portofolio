@@ -25,7 +25,7 @@ const colorMap = {
 }
 
 const stats = [
-  { value: '3+', label: 'Projects Shipped' },
+  { value: '3', label: 'Projects Shipped' },
   { value: '2025', label: 'Started Building' },
   { value: '1', label: 'Real Business' },
 ]
@@ -106,7 +106,7 @@ export default function Hero() {
             >
               <div style={{ width: '24px', height: '1px', background: '#00FFD1' }} />
               <span className="font-mono text-xs tracking-widest uppercase" style={{ color: '#00FFD1' }}>
-                Informatika · Telkom University
+                Muhammad Faiz Ghiffari – Informatika · Telkom University
               </span>
             </motion.div>
 
@@ -125,7 +125,7 @@ export default function Hero() {
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
               }}>
-                Konou
+                Ghiffari
               </span>
             </motion.h1>
 
@@ -202,7 +202,7 @@ export default function Hero() {
               people can actually use.
             </p>
             <p className="font-sora font-light" style={{ fontSize: '14px', color: '#6b6b8a', lineHeight: 1.85 }}>
-              Outside of code, I run a dimsum business called Bao De Luna —
+              Outside of code, I run a dimsum business called D'sum De Luna —
               and yes, I built the ordering system for it myself.
             </p>
           </motion.div>
