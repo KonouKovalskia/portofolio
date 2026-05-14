@@ -125,7 +125,7 @@ export default function Hero() {
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
               }}>
-                Ghiffari
+                Konou
               </span>
             </motion.h1>
 
