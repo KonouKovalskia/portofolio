@@ -26,4 +26,13 @@ export const projects = [
     url: "https://sigedung.vercel.app/",
     accent: "blue",
   },
+  {
+    id: 4,
+    title: "Personal Portfolio",
+    description: "This very portfolio website built with Next.js and Tailwind CSS, showcasing my projects and contact info.",
+    stack: ["Next.js", "Tailwind CSS", "Vercel"],
+    image: "/images/portfolio.png",
+    url: "https://konou.vercel.app/",
+    accent: "cyan",
+  },
 ]

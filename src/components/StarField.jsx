@@ -9,6 +9,8 @@ export default function StarField() {
     const container = ref.current
     if (!container) return
 
+    const stars = []
+
     for (let i = 0; i < 120; i++) {
       const star = document.createElement('div')
       const size = Math.random() * 1.5 + 0.5
@@ -24,6 +26,12 @@ export default function StarField() {
         animation: twinkle ${2 + Math.random() * 3}s ${Math.random() * 3}s infinite alternate;
       `
       container.appendChild(star)
+      stars.push(star)
+    }
+
+    // Cleanup: remove all injected star nodes on unmount
+    return () => {
+      stars.forEach(star => star.remove())
     }
   }, [])
 
