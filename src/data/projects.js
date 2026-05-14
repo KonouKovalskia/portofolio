@@ -19,7 +19,7 @@ export const projects = [
   },
   {
     id: 3,
-    title: "SIGEDUNG — TU Navigator",
+    title: "SIGEDUNG – TU Navigator",
     description: "Campus building navigator for Telkom University students.",
     stack: ["CSS", "JavaScript", "HTML", "Vercel"],
     image: "/images/sigedung.png",
