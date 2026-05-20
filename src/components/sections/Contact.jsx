@@ -3,18 +3,24 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
+// Move sensitive contact details to .env.local in production:
+// NEXT_PUBLIC_CONTACT_EMAIL=your@email.com
+// NEXT_PUBLIC_CONTACT_PHONE=628xxxxxxxxx
+const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? 'muh.faizghiffari@email.com'
+const CONTACT_PHONE = process.env.NEXT_PUBLIC_CONTACT_PHONE ?? '6281217181818'
+
 const links = [
   {
     label: 'Email',
-    value: 'muh.faizghiffari@email.com',
-    href: 'mailto:muh.faizghiffari@email.com',
+    value: CONTACT_EMAIL,
+    href: `mailto:${CONTACT_EMAIL}`,
     accent: 'blue',
     icon: '↗',
   },
   {
     label: 'WhatsApp',
-    value: '+62 81217181818',
-    href: 'https://wa.me/6281217181818',
+    value: `+${CONTACT_PHONE}`,
+    href: `https://wa.me/${CONTACT_PHONE}`,
     accent: 'cyan',
     icon: '↗',
   },
@@ -27,7 +33,7 @@ const links = [
   },
   {
     label: 'LinkedIn',
-    value: 'linkedin.com/in/muhammad-faiz-ghiffari',
+    value: 'muhammad-faiz-ghiffari',
     href: 'https://www.linkedin.com/in/muhammad-faiz-ghiffari-729b6524b/',
     accent: 'blue',
     icon: '↗',
@@ -47,7 +53,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative px-8 md:px-24 py-32 pb-16"
+      className="relative px-6 md:px-24 py-32 pb-16"
       style={{ borderTop: '0.5px solid rgba(79,195,247,0.1)' }}
     >
       {/* Nebula accent */}
@@ -103,8 +109,14 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        {/* Contact cards — full width 4-col on desktop, 2-col on mobile */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+        {/*
+          Contact cards:
+          - 1 col on mobile (prevents long strings from overflowing half-width cards)
+          - 2 col on sm
+          - 4 col on lg
+          Value text uses overflow-hidden + text-ellipsis instead of break-all
+        */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
           {links.map(({ label, value, href, accent, icon }, i) => {
             const c = colorMap[accent]
             return (
@@ -149,14 +161,17 @@ export default function Contact() {
                   </span>
                 </div>
 
-                {/* Value */}
+                {/* Value — truncate with ellipsis instead of break-all */}
                 <div
                   className="font-sora text-sm"
                   style={{
                     color: '#9b9bb8',
-                    wordBreak: 'break-all',
                     lineHeight: 1.5,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
                   }}
+                  title={value}
                 >
                   {value}
                 </div>

@@ -41,10 +41,14 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center px-8 md:px-24 py-24"
+      className="relative min-h-screen flex items-center px-6 md:px-24 py-24"
     >
-      {/* Hidden anchor for navbar "About" detection */}
-      <div id="about" style={{ position: 'absolute', top: '60%' }} />
+      {/*
+        "About" anchor placed near the bottom of the hero so the navbar
+        only marks it active once the user has actually scrolled past the
+        hero content — not at 60% which fired way too early.
+      */}
+      <div id="about" style={{ position: 'absolute', top: '85%' }} />
 
       {/* Glow blobs */}
       <div className="absolute right-0 top-1/4 pointer-events-none" style={{
@@ -56,7 +60,7 @@ export default function Hero() {
         background: 'radial-gradient(circle, rgba(79,195,247,0.05) 0%, transparent 70%)',
       }} />
 
-      <div className="relative z-10 w-full flex flex-col md:flex-row gap-16 md:gap-24 items-center">
+      <div className="relative z-10 w-full flex flex-col md:flex-row gap-12 md:gap-24 items-center">
 
         {/* ── LEFT COL: Photo + intro ── */}
         <div className="flex flex-col items-center md:items-start gap-8 md:w-1/2">
@@ -68,8 +72,8 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             style={{
               position: 'relative',
-              width: 'clamp(180px, 22vw, 300px)',
-              height: 'clamp(180px, 22vw, 300px)',
+              width: 'clamp(160px, 22vw, 300px)',
+              height: 'clamp(160px, 22vw, 300px)',
               flexShrink: 0,
             }}
           >
@@ -90,7 +94,7 @@ export default function Hero() {
                 alt="Konou"
                 fill
                 style={{ objectFit: 'cover' }}
-                sizes="(max-width: 768px) 180px, 22vw"
+                sizes="(max-width: 768px) 160px, 22vw"
                 priority
               />
             </div>
@@ -104,7 +108,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="flex items-center gap-3 mb-4 justify-center md:justify-start"
             >
-              <div style={{ width: '24px', height: '1px', background: '#00FFD1' }} />
+              <div style={{ width: '24px', height: '1px', background: '#00FFD1', flexShrink: 0 }} />
               <span className="font-mono text-xs tracking-widest uppercase" style={{ color: '#00FFD1' }}>
                 Muhammad Faiz Ghiffari – Informatika · Telkom University
               </span>
@@ -116,7 +120,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="font-sora font-bold mb-3"
-              style={{ fontSize: 'clamp(32px, 5vw, 52px)', lineHeight: 1.1, letterSpacing: '-0.02em' }}
+              style={{ fontSize: 'clamp(28px, 5vw, 52px)', lineHeight: 1.1, letterSpacing: '-0.02em' }}
             >
               Hi, I&apos;m{' '}
               <span style={{
@@ -164,7 +168,7 @@ export default function Hero() {
         </div>
 
         {/* ── RIGHT COL: Bio + stats + skills ── */}
-        <div ref={ref} className="md:w-1/2">
+        <div ref={ref} className="md:w-1/2 w-full">
 
           {/* About label */}
           <motion.div
@@ -202,17 +206,17 @@ export default function Hero() {
               people can actually use.
             </p>
             <p className="font-sora font-light" style={{ fontSize: '14px', color: '#6b6b8a', lineHeight: 1.85 }}>
-              Outside of code, I run a dimsum business called D'sum De Luna —
+              Outside of code, I run a dimsum business called D&apos;sum De Luna —
               and yes, I built the ordering system for it myself.
             </p>
           </motion.div>
 
-          {/* Stats */}
+          {/* Stats — flex-wrap prevents overflow on narrow screens */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex gap-8 mb-8"
+            className="flex flex-wrap gap-6 mb-8"
           >
             {stats.map(({ value, label }) => (
               <div key={label}>

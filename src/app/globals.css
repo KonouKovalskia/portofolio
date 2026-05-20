@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap');
+/* Google Fonts are now loaded via next/font in layout.jsx — do NOT add @import here.
+   next/font handles preconnect, preload, and swap automatically with zero render blocking. */
 @import "tailwindcss";
 
 @theme {
-  --font-sora: 'Sora', sans-serif;
-  --font-mono: 'Space Mono', monospace;
+  --font-sora: var(--font-sora, 'Sora', sans-serif);
+  --font-mono: var(--font-mono, 'Space Mono', monospace);
   --color-accent-blue: #4FC3F7;
   --color-accent-purple: #9D4EDD;
   --color-accent-cyan: #00FFD1;
@@ -16,7 +17,7 @@ html {
 body {
   background-color: #05050f;
   color: #e8e8f0;
-  font-family: 'Sora', sans-serif;
+  font-family: var(--font-sora, 'Sora', sans-serif);
   overflow-x: hidden;
 }
 

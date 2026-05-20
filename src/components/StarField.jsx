@@ -3,51 +3,67 @@
 import { useEffect, useRef } from 'react'
 
 export default function StarField() {
-  const ref = useRef(null)
+  const canvasRef = useRef(null)
 
   useEffect(() => {
-    const container = ref.current
-    if (!container) return
+    const canvas = canvasRef.current
+    if (!canvas) return
 
-    const stars = []
+    const ctx = canvas.getContext('2d')
+    let animFrameId
+    let stars = []
 
-    for (let i = 0; i < 120; i++) {
-      const star = document.createElement('div')
-      const size = Math.random() * 1.5 + 0.5
-      star.style.cssText = `
-        position: absolute;
-        border-radius: 50%;
-        background: white;
-        width: ${size}px;
-        height: ${size}px;
-        left: ${Math.random() * 100}%;
-        top: ${Math.random() * 100}%;
-        opacity: ${Math.random() * 0.4 + 0.1};
-        animation: twinkle ${2 + Math.random() * 3}s ${Math.random() * 3}s infinite alternate;
-      `
-      container.appendChild(star)
-      stars.push(star)
+    const isMobile = () => window.innerWidth < 768
+
+    const resize = () => {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+      buildStars()
     }
 
-    // Cleanup: remove all injected star nodes on unmount
+    const buildStars = () => {
+      // Halve star count on mobile to protect scroll performance
+      const count = isMobile() ? 60 : 120
+      stars = Array.from({ length: count }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 0.75 + 0.25,
+        baseAlpha: Math.random() * 0.35 + 0.1,
+        speed: 0.3 + Math.random() * 0.7,
+        phase: Math.random() * Math.PI * 2,
+      }))
+    }
+
+    const draw = (t) => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      const time = t / 1000
+      for (const s of stars) {
+        const alpha = s.baseAlpha + Math.sin(time * s.speed + s.phase) * 0.15
+        ctx.beginPath()
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(255,255,255,${Math.max(0, alpha)})`
+        ctx.fill()
+      }
+      animFrameId = requestAnimationFrame(draw)
+    }
+
+    resize()
+    window.addEventListener('resize', resize)
+    animFrameId = requestAnimationFrame(draw)
+
     return () => {
-      stars.forEach(star => star.remove())
+      cancelAnimationFrame(animFrameId)
+      window.removeEventListener('resize', resize)
     }
   }, [])
 
   return (
     <>
-      <style>{`
-        @keyframes twinkle {
-          from { opacity: 0.1; }
-          to { opacity: 0.6; }
-        }
-      `}</style>
-
-      {/* Stars */}
-      <div
-        ref={ref}
+      {/* Canvas-based stars — single DOM node, GPU-composited, no layout thrash */}
+      <canvas
+        ref={canvasRef}
         className="fixed inset-0 pointer-events-none z-0"
+        style={{ display: 'block' }}
       />
 
       {/* Nebula gradients */}

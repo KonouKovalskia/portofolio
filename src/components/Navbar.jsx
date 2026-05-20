@@ -25,8 +25,10 @@ export default function Navbar() {
   }
 
   useEffect(() => {
-    // Run once on mount to set correct active section on hard refresh / deep link
-    detectActive()
+    // Defer initial detection until after paint so all section elements are in DOM
+    const raf = requestAnimationFrame(() => {
+      setTimeout(detectActive, 100)
+    })
 
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
@@ -34,7 +36,10 @@ export default function Navbar() {
     }
 
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [])
 
   const scrollTo = (id) => {

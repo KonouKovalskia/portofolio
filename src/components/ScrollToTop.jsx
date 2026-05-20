@@ -18,8 +18,12 @@ export default function ScrollToTop() {
   return (
     <button
       onClick={scrollUp}
-      className="fixed bottom-6 right-6 z-50 w-9 h-9 flex items-center justify-center font-mono text-sm transition-all duration-200 cursor-pointer"
+      aria-label="Scroll to top"
+      className="fixed z-50 w-9 h-9 flex items-center justify-center font-mono text-sm transition-all duration-200 cursor-pointer"
       style={{
+        // More clearance on mobile so it doesn't sit on top of footer content
+        bottom: 'max(24px, env(safe-area-inset-bottom, 24px))',
+        right: '24px',
         background: 'rgba(5,5,15,0.9)',
         border: '0.5px solid rgba(79,195,247,0.4)',
         borderRadius: '8px',
