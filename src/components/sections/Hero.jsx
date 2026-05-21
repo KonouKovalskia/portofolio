@@ -110,7 +110,7 @@ export default function Hero() {
             >
               <div style={{ width: '24px', height: '1px', background: '#00FFD1', flexShrink: 0 }} />
               <span className="font-mono text-xs tracking-widest uppercase" style={{ color: '#00FFD1' }}>
-                Muhammad Faiz Ghiffari – Informatika · Telkom University
+                Muhammad Faiz Ghiffari – Information Technology · Telkom University
               </span>
             </motion.div>
 
@@ -200,7 +200,7 @@ export default function Hero() {
             className="mb-8"
           >
             <p className="font-sora font-light mb-3" style={{ fontSize: '14px', color: '#6b6b8a', lineHeight: 1.85 }}>
-              Informatika student at Telkom University with a focus on building
+              Information Technology student at Telkom University with a focus on building
               things that actually work in the real world — not just coursework.
               I care about clean interfaces, real use cases, and shipping things
               people can actually use.
