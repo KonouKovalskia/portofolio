@@ -1,28 +1,31 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function CustomCursor() {
   const dotRef = useRef(null)
   const ringRef = useRef(null)
-  // Use refs for position to avoid React re-renders on every mousemove
   const mouse = useRef({ x: -100, y: -100 })
   const ring = useRef({ x: -100, y: -100 })
   const rafId = useRef(null)
+  // SSR-safe: don't render until we know it's a pointer device
+  const [show, setShow] = useState(false)
 
   useEffect(() => {
+    // Only show on non-touch devices
+    if (!window.matchMedia('(pointer: fine)').matches) return
+    setShow(true)
+
     const dot = dotRef.current
     const ringEl = ringRef.current
     if (!dot || !ringEl) return
 
     const onMouseMove = (e) => {
       mouse.current = { x: e.clientX, y: e.clientY }
-      // Snap dot immediately
       dot.style.left = `${e.clientX}px`
       dot.style.top = `${e.clientY}px`
     }
 
-    // Smooth ring follow via rAF
     const animate = () => {
       ring.current.x += (mouse.current.x - ring.current.x) * 0.12
       ring.current.y += (mouse.current.y - ring.current.y) * 0.12
@@ -41,22 +44,19 @@ export default function CustomCursor() {
       ringEl.classList.remove('hovered')
     }
 
-    // Delegate hover detection to interactive elements
-    document.addEventListener('mousemove', onMouseMove)
-    document.querySelectorAll('a, button, [role="button"]').forEach(el => {
-      el.addEventListener('mouseenter', onEnter)
-      el.addEventListener('mouseleave', onLeave)
-    })
-
-    // Use MutationObserver to catch dynamically added elements
-    const observer = new MutationObserver(() => {
+    const attach = () => {
       document.querySelectorAll('a, button, [role="button"]').forEach(el => {
         el.removeEventListener('mouseenter', onEnter)
         el.removeEventListener('mouseleave', onLeave)
         el.addEventListener('mouseenter', onEnter)
         el.addEventListener('mouseleave', onLeave)
       })
-    })
+    }
+
+    document.addEventListener('mousemove', onMouseMove)
+    attach()
+
+    const observer = new MutationObserver(attach)
     observer.observe(document.body, { childList: true, subtree: true })
 
     return () => {
@@ -64,12 +64,9 @@ export default function CustomCursor() {
       cancelAnimationFrame(rafId.current)
       observer.disconnect()
     }
-  }, [])
+  }, [show])
 
-  // Don't render on touch devices
-  if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
-    return null
-  }
+  if (!show) return null
 
   return (
     <>

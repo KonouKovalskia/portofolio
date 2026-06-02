@@ -34,48 +34,48 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center px-6 lg:px-24 py-24"
+      className="relative min-h-screen flex items-center px-6 lg:px-24"
+      style={{ paddingTop: '96px', paddingBottom: '80px' }}
     >
-      {/* "About" anchor placed near the bottom of the hero */}
+      {/* "About" anchor */}
       <div id="about" style={{ position: 'absolute', top: '85%' }} />
 
-      {/* Glow blobs */}
-      <div className="absolute right-0 top-1/4 pointer-events-none" style={{
-        width: '500px', height: '500px', borderRadius: '50%',
+      {/* Glow blobs — clipped so they don't cause horizontal overflow on mobile */}
+      <div className="absolute right-0 top-1/4 pointer-events-none overflow-hidden" style={{
+        width: '400px', height: '400px', borderRadius: '50%',
         background: 'radial-gradient(circle, rgba(157,78,221,0.08) 0%, transparent 70%)',
       }} />
       <div className="absolute left-0 bottom-1/4 pointer-events-none" style={{
-        width: '400px', height: '400px', borderRadius: '50%',
+        width: '300px', height: '300px', borderRadius: '50%',
         background: 'radial-gradient(circle, rgba(79,195,247,0.05) 0%, transparent 70%)',
       }} />
 
-      {/* Ring spin animation */}
       <style>{`
         @keyframes ring-spin { to { transform: rotate(360deg); } }
         @keyframes scroll-bounce {
-          0%, 100% { transform: translateY(0); opacity: 0.6; }
-          50%       { transform: translateY(6px); opacity: 1; }
+          0%, 100% { transform: translateY(0); opacity: 0.5; }
+          50%       { transform: translateY(7px); opacity: 1; }
         }
       `}</style>
 
-      <div className="relative z-10 w-full flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
+      <div className="relative z-10 w-full flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
 
-        {/* ── LEFT COL: Photo + intro ── */}
-        <div className="flex flex-col items-center lg:items-start gap-7 lg:w-5/12">
+        {/* ── LEFT COL ── */}
+        <div className="flex flex-col items-center lg:items-start gap-6 lg:w-5/12 w-full">
 
-          {/* Photo */}
+          {/* Photo — fixed size on mobile, vw-based on desktop */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.1 }}
             style={{
               position: 'relative',
-              width: 'clamp(130px, 16vw, 220px)',
-              height: 'clamp(130px, 16vw, 220px)',
+              width: '160px',
+              height: '160px',
               flexShrink: 0,
             }}
+            className="lg:w-[clamp(130px,16vw,210px)] lg:h-[clamp(130px,16vw,210px)]"
           >
-            {/* Conic gradient spinning ring */}
             <div style={{
               position: 'absolute', inset: '-3px', borderRadius: '50%',
               background: 'conic-gradient(from 0deg, #4FC3F7, #9D4EDD, #00FFD1, #4FC3F7)',
@@ -95,33 +95,32 @@ export default function Hero() {
                 alt="Muhammad Faiz Ghiffari"
                 fill
                 style={{ objectFit: 'cover' }}
-                sizes="(max-width: 1024px) 130px, 16vw"
+                sizes="160px"
                 priority
               />
             </div>
           </motion.div>
 
-          {/* Intro text */}
-          <div className="text-center lg:text-left">
+          {/* Intro */}
+          <div className="text-center lg:text-left w-full">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="flex items-center gap-3 mb-4 justify-center lg:justify-start"
             >
-              <div style={{ width: '24px', height: '1px', background: '#00FFD1', flexShrink: 0 }} />
-              <span className="font-mono text-xs tracking-widest uppercase" style={{ color: '#00FFD1' }}>
+              <div style={{ width: '20px', height: '1px', background: '#00FFD1', flexShrink: 0 }} />
+              <span className="font-mono tracking-widest uppercase" style={{ color: '#00FFD1', fontSize: '10px' }}>
                 Information Technology · Telkom University
               </span>
             </motion.div>
 
-            {/* Name */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="font-sora font-bold mb-3"
-              style={{ fontSize: 'clamp(26px, 4.5vw, 50px)', lineHeight: 1.1, letterSpacing: '-0.02em' }}
+              style={{ fontSize: 'clamp(28px, 5vw, 52px)', lineHeight: 1.1, letterSpacing: '-0.02em' }}
             >
               Hi, I&apos;m{' '}
               <span style={{
@@ -134,62 +133,53 @@ export default function Hero() {
               </span>
             </motion.h1>
 
-            {/* Tagline */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               className="font-sora font-light mb-8"
-              style={{ fontSize: 'clamp(13px, 1.6vw, 15px)', color: '#6b6b8a', lineHeight: 1.75 }}
+              style={{ fontSize: '14px', color: '#6b6b8a', lineHeight: 1.75, maxWidth: '360px',
+                margin: '0 auto 32px', textAlign: 'inherit' }}
             >
               I build web products that solve real problems —
               from campus tools to systems running actual businesses.
             </motion.p>
 
-            {/* CTAs */}
+            {/* CTAs — full width on mobile, auto on desktop */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex gap-3 flex-wrap justify-center lg:justify-start"
+              className="flex gap-3 justify-center lg:justify-start"
+              style={{ flexWrap: 'wrap' }}
             >
               <button
                 onClick={() => scrollTo('projects')}
-                className="font-sora font-semibold text-sm px-6 py-3 rounded-lg"
+                className="font-sora font-semibold rounded-lg"
                 style={{
                   background: '#4FC3F7', color: '#05050f',
-                  border: 'none', transition: 'background 0.2s, transform 0.2s',
+                  border: 'none', fontSize: '13px',
+                  padding: '11px 24px',
+                  transition: 'background 0.2s, transform 0.2s',
+                  flex: '1 1 auto', maxWidth: '160px',
                 }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.background = '#38b2e0'
-                  e.currentTarget.style.transform = 'translateY(-2px)'
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.background = '#4FC3F7'
-                  e.currentTarget.style.transform = 'translateY(0)'
-                }}
+                onMouseEnter={e => { e.currentTarget.style.background = '#38b2e0'; e.currentTarget.style.transform = 'translateY(-2px)' }}
+                onMouseLeave={e => { e.currentTarget.style.background = '#4FC3F7'; e.currentTarget.style.transform = 'translateY(0)' }}
               >
                 View Projects
               </button>
               <button
                 onClick={() => scrollTo('contact')}
-                className="font-sora font-semibold text-sm px-6 py-3 rounded-lg"
+                className="font-sora font-semibold rounded-lg"
                 style={{
-                  background: 'transparent',
-                  color: '#4FC3F7',
+                  background: 'transparent', color: '#4FC3F7',
                   border: '1px solid rgba(79,195,247,0.35)',
+                  fontSize: '13px', padding: '11px 24px',
                   transition: 'border-color 0.2s, color 0.2s, transform 0.2s',
+                  flex: '1 1 auto', maxWidth: '160px',
                 }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.borderColor = '#4FC3F7'
-                  e.currentTarget.style.color = '#e8e8f0'
-                  e.currentTarget.style.transform = 'translateY(-2px)'
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.borderColor = 'rgba(79,195,247,0.35)'
-                  e.currentTarget.style.color = '#4FC3F7'
-                  e.currentTarget.style.transform = 'translateY(0)'
-                }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = '#4FC3F7'; e.currentTarget.style.color = '#e8e8f0'; e.currentTarget.style.transform = 'translateY(-2px)' }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(79,195,247,0.35)'; e.currentTarget.style.color = '#4FC3F7'; e.currentTarget.style.transform = 'translateY(0)' }}
               >
                 Get In Touch
               </button>
@@ -197,47 +187,45 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ── RIGHT COL: Bio + skills ── */}
+        {/* ── RIGHT COL ── */}
         <div ref={ref} className="lg:w-7/12 w-full">
 
-          {/* Divider line visible only on lg */}
+          {/* Vertical divider — desktop only, positioned relative to the section not the col */}
           <div
-            className="hidden lg:block absolute"
+            className="hidden lg:block"
             style={{
-              left: '42%', top: '15%', bottom: '15%',
+              position: 'absolute',
+              left: 'calc(5/12 * 100% + 2rem)',
+              top: '20%', bottom: '20%',
               width: '1px',
               background: 'linear-gradient(to bottom, transparent, rgba(79,195,247,0.15), transparent)',
+              pointerEvents: 'none',
             }}
           />
 
-          {/* About label */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0 }}
-            className="mb-6"
+            transition={{ duration: 0.6 }}
+            className="mb-5"
           >
             <span className="font-mono text-xs tracking-widest uppercase" style={{ color: '#00FFD1' }}>
               about
             </span>
             <h2
               className="font-sora font-semibold mt-2 mb-2"
-              style={{ fontSize: '26px', letterSpacing: '-0.01em' }}
+              style={{ fontSize: '24px', letterSpacing: '-0.01em' }}
             >
               Who I Am
             </h2>
-            <div style={{
-              width: '40px', height: '1px',
-              background: 'linear-gradient(90deg, #4FC3F7, #9D4EDD)',
-            }} />
+            <div style={{ width: '36px', height: '1px', background: 'linear-gradient(90deg, #4FC3F7, #9D4EDD)' }} />
           </motion.div>
 
-          {/* Bio */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-8"
+            className="mb-7"
           >
             <p className="font-sora font-light mb-3" style={{ fontSize: '14px', color: '#6b6b8a', lineHeight: 1.85 }}>
               First-year IT student at Telkom University, Bandung — focused on
@@ -252,7 +240,6 @@ export default function Hero() {
             </p>
           </motion.div>
 
-          {/* Skills */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -269,7 +256,6 @@ export default function Hero() {
                   style={{
                     border: `1px solid ${colorMap[color].border}`,
                     color: colorMap[color].color,
-                    transition: 'border-color 0.2s',
                   }}
                 >
                   {label}
@@ -277,29 +263,26 @@ export default function Hero() {
               ))}
             </div>
           </motion.div>
-
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — hidden on very short screens */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4, duration: 0.8 }}
         onClick={() => scrollTo('projects')}
-        className="absolute bottom-10 left-1/2 flex flex-col items-center gap-2"
-        style={{ transform: 'translateX(-50%)', cursor: 'pointer' }}
+        className="absolute left-1/2 flex-col items-center gap-2 hidden sm:flex"
+        style={{ bottom: '28px', transform: 'translateX(-50%)', cursor: 'pointer' }}
       >
-        <span className="font-mono text-xs tracking-widest uppercase" style={{ color: '#6b6b8a', opacity: 0.6 }}>
+        <span className="font-mono tracking-widest uppercase" style={{ color: '#6b6b8a', opacity: 0.5, fontSize: '10px' }}>
           scroll
         </span>
-        <div
-          style={{
-            width: '1px', height: '36px',
-            background: 'linear-gradient(to bottom, rgba(79,195,247,0.6), transparent)',
-            animation: 'scroll-bounce 1.8s ease-in-out infinite',
-          }}
-        />
+        <div style={{
+          width: '1px', height: '32px',
+          background: 'linear-gradient(to bottom, rgba(79,195,247,0.6), transparent)',
+          animation: 'scroll-bounce 1.8s ease-in-out infinite',
+        }} />
       </motion.div>
     </section>
   )
