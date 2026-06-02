@@ -35,19 +35,21 @@ export default function Hero() {
     <section
       id="home"
       className="relative min-h-screen flex items-center px-6 lg:px-24"
-      style={{ paddingTop: '96px', paddingBottom: '80px' }}
+      style={{ paddingTop: "96px", paddingBottom: "80px", overflowX: "hidden" }}
     >
       {/* "About" anchor */}
       <div id="about" style={{ position: 'absolute', top: '85%' }} />
 
-      {/* Glow blobs — clipped so they don't cause horizontal overflow on mobile */}
-      <div className="absolute right-0 top-1/4 pointer-events-none overflow-hidden" style={{
-        width: '400px', height: '400px', borderRadius: '50%',
+      {/* Glow blobs — partially translated off-screen so they never cause overflow */}
+      <div className="absolute right-0 top-1/4 pointer-events-none" style={{
+        width: '280px', height: '280px', borderRadius: '50%',
         background: 'radial-gradient(circle, rgba(157,78,221,0.08) 0%, transparent 70%)',
+        transform: 'translateX(40%)',
       }} />
       <div className="absolute left-0 bottom-1/4 pointer-events-none" style={{
-        width: '300px', height: '300px', borderRadius: '50%',
+        width: '220px', height: '220px', borderRadius: '50%',
         background: 'radial-gradient(circle, rgba(79,195,247,0.05) 0%, transparent 70%)',
+        transform: 'translateX(-40%)',
       }} />
 
       <style>{`
@@ -73,11 +75,13 @@ export default function Hero() {
               width: '160px',
               height: '160px',
               flexShrink: 0,
+              overflow: 'visible',
             }}
             className="lg:w-[clamp(130px,16vw,210px)] lg:h-[clamp(130px,16vw,210px)]"
           >
+            {/* Ring rendered INSIDE a safe container that doesn't affect layout */}
             <div style={{
-              position: 'absolute', inset: '-3px', borderRadius: '50%',
+              position: 'absolute', inset: '-4px', borderRadius: '50%',
               background: 'conic-gradient(from 0deg, #4FC3F7, #9D4EDD, #00FFD1, #4FC3F7)',
               zIndex: 0,
               animation: 'ring-spin 6s linear infinite',
