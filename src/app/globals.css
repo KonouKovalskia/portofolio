@@ -1,5 +1,3 @@
-/* Google Fonts are now loaded via next/font in layout.jsx — do NOT add @import here.
-   next/font handles preconnect, preload, and swap automatically with zero render blocking. */
 @import "tailwindcss";
 
 @theme {
@@ -19,6 +17,55 @@ body {
   color: #e8e8f0;
   font-family: var(--font-sora, 'Sora', sans-serif);
   overflow-x: hidden;
+  /* Custom cursor */
+  cursor: none;
+}
+
+/* Restore default cursor only on interactive elements */
+a, button, [role="button"], input, textarea, select, label {
+  cursor: none;
+}
+
+/* Custom cursor dot */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4FC3F7;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s, opacity 0.2s;
+  mix-blend-mode: screen;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(79, 195, 247, 0.5);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+}
+
+.cursor-dot.hovered {
+  width: 12px;
+  height: 12px;
+  background: #00FFD1;
+}
+
+.cursor-ring.hovered {
+  width: 48px;
+  height: 48px;
+  border-color: rgba(0, 255, 209, 0.4);
 }
 
 ::selection {
@@ -27,7 +74,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
 
 ::-webkit-scrollbar-track {
@@ -35,6 +82,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(79, 195, 247, 0.3);
+  background: linear-gradient(180deg, #4FC3F7, #9D4EDD);
   border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4FC3F7;
 }

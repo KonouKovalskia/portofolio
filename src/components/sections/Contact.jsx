@@ -3,10 +3,7 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
-// Move sensitive contact details to .env.local in production:
-// NEXT_PUBLIC_CONTACT_EMAIL=your@email.com
-// NEXT_PUBLIC_CONTACT_PHONE=628xxxxxxxxx
-const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? 'muh.faizghiffari@email.com'
+const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? 'faizghiffari@gmail.com'
 const CONTACT_PHONE = process.env.NEXT_PUBLIC_CONTACT_PHONE ?? '6281217181818'
 
 const links = [
@@ -15,28 +12,28 @@ const links = [
     value: CONTACT_EMAIL,
     href: `mailto:${CONTACT_EMAIL}`,
     accent: 'blue',
-    icon: '↗',
+    note: 'Fastest response',
   },
   {
     label: 'WhatsApp',
     value: `+${CONTACT_PHONE}`,
     href: `https://wa.me/${CONTACT_PHONE}`,
     accent: 'cyan',
-    icon: '↗',
+    note: 'For quick chats',
   },
   {
     label: 'GitHub',
-    value: 'github.com/KonouKovalskia',
+    value: 'KonouKovalskia',
     href: 'https://github.com/KonouKovalskia',
     accent: 'purple',
-    icon: '↗',
+    note: 'See my code',
   },
   {
     label: 'LinkedIn',
     value: 'muhammad-faiz-ghiffari',
     href: 'https://www.linkedin.com/in/muhammad-faiz-ghiffari-729b6524b/',
     accent: 'blue',
-    icon: '↗',
+    note: 'Professional profile',
   },
 ]
 
@@ -83,14 +80,14 @@ export default function Contact() {
               className="font-mono text-xs tracking-widest uppercase"
               style={{ color: '#00FFD1' }}
             >
-              {"contact"}
+              contact
             </span>
           </div>
           <h2
             className="font-sora font-semibold mb-2"
             style={{ fontSize: '32px', letterSpacing: '-0.01em' }}
           >
-            Get In Touch
+            Let&apos;s Work Together
           </h2>
           <div
             className="mb-6"
@@ -104,20 +101,15 @@ export default function Contact() {
             className="font-sora font-light"
             style={{ fontSize: '15px', color: '#6b6b8a', lineHeight: 1.7, maxWidth: '480px' }}
           >
-            Open to internships, collaborations, or just a chat.
-            Pick your preferred channel below.
+            I&apos;m actively looking for an internship in frontend or fullstack development
+            — preferably somewhere that ships real products. I&apos;m also open to
+            freelance projects and collaborations.
           </p>
         </motion.div>
 
-        {/*
-          Contact cards:
-          - 1 col on mobile (prevents long strings from overflowing half-width cards)
-          - 2 col on sm
-          - 4 col on lg
-          Value text uses overflow-hidden + text-ellipsis instead of break-all
-        */}
+        {/* Contact cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-          {links.map(({ label, value, href, accent, icon }, i) => {
+          {links.map(({ label, value, href, accent, note }, i) => {
             const c = colorMap[accent]
             return (
               <motion.a
@@ -133,7 +125,7 @@ export default function Contact() {
                   background: c.bg,
                   border: `0.5px solid ${c.border}`,
                   textDecoration: 'none',
-                  minHeight: '120px',
+                  minHeight: '130px',
                   transition: 'border-color 0.2s, transform 0.2s',
                 }}
                 onMouseEnter={e => {
@@ -145,8 +137,8 @@ export default function Contact() {
                   e.currentTarget.style.transform = 'translateY(0)'
                 }}
               >
-                {/* Top row: label + icon */}
-                <div className="flex items-start justify-between mb-4">
+                {/* Top row: label + arrow */}
+                <div className="flex items-start justify-between mb-3">
                   <span
                     className="font-mono text-xs tracking-widest uppercase"
                     style={{ color: c.text }}
@@ -157,11 +149,19 @@ export default function Contact() {
                     className="font-mono text-sm transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     style={{ color: c.text, opacity: 0.7 }}
                   >
-                    {icon}
+                    ↗
                   </span>
                 </div>
 
-                {/* Value — truncate with ellipsis instead of break-all */}
+                {/* Note */}
+                <div
+                  className="font-mono text-xs mb-3"
+                  style={{ color: c.text, opacity: 0.45 }}
+                >
+                  {note}
+                </div>
+
+                {/* Value */}
                 <div
                   className="font-sora text-sm"
                   style={{
