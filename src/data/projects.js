@@ -29,4 +29,14 @@ export const projects = [
     url: "https://sigedung.vercel.app/",
     accent: "blue",
   },
+  {
+    id: 4,
+    title: "Kaarira – Career Selection Prep",
+    description:
+      "Exam prep platform for Indonesia's toughest recruitment tracks. Timed simulations, auto-grading, and peer percentile ranking — live, with paying users and a real payment flow.",
+    stack: ["Next.js", "Supabase", "Vercel"],
+    image: "/images/kaarira.png",
+    url: "https://kaarira.com",
+    accent: "blue",
+  },
 ]
