@@ -11,26 +11,16 @@ export const projects = [
   },
   {
     id: 2,
-    title: "UKM Basketball Portal",
-    description:
-      "Official club portal for Telkom University's basketball unit. Handles member registration, branch info, and club profile — replacing a scattered WhatsApp-based system.",
-    stack: ["Next.js", "Tailwind CSS", "Vercel"],
-    image: "/images/ukm-basket.png",
-    url: "https://ukm-basket.vercel.app/",
-    accent: "purple",
-  },
-  {
-    id: 3,
     title: "SIGEDUNG – Campus Navigator",
     description:
       "Wayfinding tool for Telkom University's campus. Students search buildings by name or faculty and get directions without needing a campus map or asking around.",
     stack: ["JavaScript", "CSS", "HTML", "Vercel"],
     image: "/images/sigedung.png",
     url: "https://sigedung.vercel.app/",
-    accent: "blue",
+    accent: "purple",
   },
   {
-    id: 4,
+    id: 3,
     title: "Kaarira – Career Selection Prep",
     description:
       "Exam prep platform for Indonesia's toughest recruitment tracks. Timed simulations, auto-grading, and peer percentile ranking — live, with paying users and a real payment flow.",

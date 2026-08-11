@@ -203,7 +203,7 @@ export default function Projects() {
             className="font-sora font-light"
             style={{ fontSize: '14px', color: '#6b6b8a', lineHeight: 1.7, maxWidth: '440px' }}
           >
-            Four live products — each built to solve a real problem, not just
+            Three live products — each built to solve a real problem, not just
             to have something to show.
           </p>
         </motion.div>
