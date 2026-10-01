@@ -1,61 +1,35 @@
 import './globals.css'
-import { Sora, Space_Mono } from 'next/font/google'
-import Navbar from '@/components/Navbar'
-import ScrollToTop from '@/components/ScrollToTop'
-import StarField from '@/components/StarField'
-import CustomCursor from '@/components/CustomCursor'
+import { Instrument_Sans, Instrument_Serif } from 'next/font/google'
 
-const sora = Sora({
+const sans = Instrument_Sans({ subsets: ['latin'], variable: '--font-sans', display: 'swap' })
+const serif = Instrument_Serif({
   subsets: ['latin'],
-  weight: ['300', '400', '600', '700'],
-  variable: '--font-sora',
+  weight: '400',
+  style: ['normal', 'italic'],
+  variable: '--font-serif',
   display: 'swap',
 })
 
-const spaceMono = Space_Mono({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-mono',
-  display: 'swap',
-})
+const description =
+  'IT student at Telkom University in Bandung. I build web products people use, and I am looking for a frontend internship.'
 
 export const metadata = {
-  title: 'Konou — Frontend Developer',
-  description: 'Information Technology student at Telkom University. I build web products that solve real problems.',
+  title: 'Konou, frontend developer',
+  description,
   openGraph: {
-    title: 'Konou — Frontend Developer',
-    description: 'Information Technology student at Telkom University. I build web products that solve real problems.',
+    title: 'Konou, frontend developer',
+    description,
     url: 'https://konou.dev',
-    siteName: 'Konou Portfolio',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Konou — Frontend Developer',
-      },
-    ],
+    siteName: 'Konou',
     locale: 'en_US',
     type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Konou — Frontend Developer',
-    description: 'Information Technology student at Telkom University. I build web products that solve real problems.',
-    images: ['/og-image.png'],
   },
 }
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${sora.variable} ${spaceMono.variable}`}>
-      <body>
-        <CustomCursor />
-        <StarField />
-        <Navbar />
-        <main>{children}</main>
-        <ScrollToTop />
-      </body>
+    <html lang="en" className={`${sans.variable} ${serif.variable}`}>
+      <body>{children}</body>
     </html>
   )
 }

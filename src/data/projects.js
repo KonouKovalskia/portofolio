@@ -1,32 +1,20 @@
 export const projects = [
   {
-    id: 1,
-    title: "D'sum de Luna",
+    slug: "kaarira",
+    title: "Kaarira",
     description:
-      "Built a full ordering system for my own dimsum business — QRIS payment, WhatsApp order routing, and delivery slot booking. Designed to handle real orders, not just look good.",
-    stack: ["JavaScript", "CSS", "HTML", "Vercel"],
-    image: "/images/dsum-de-luna.png",
-    url: "https://dsum-de-luna.vercel.app/",
-    accent: "cyan",
-  },
-  {
-    id: 2,
-    title: "SIGEDUNG – Campus Navigator",
-    description:
-      "Wayfinding tool for Telkom University's campus. Students search buildings by name or faculty and get directions without needing a campus map or asking around.",
-    stack: ["JavaScript", "CSS", "HTML", "Vercel"],
-    image: "/images/sigedung.png",
-    url: "https://sigedung.vercel.app/",
-    accent: "purple",
-  },
-  {
-    id: 3,
-    title: "Kaarira – Career Selection Prep",
-    description:
-      "Exam prep platform for Indonesia's toughest recruitment tracks. Timed simulations, auto-grading, and peer percentile ranking — live, with paying users and a real payment flow.",
+      "A startup I co-founded and built. It started as exam prep for Indonesia's toughest recruitment tracks, with timed simulations, auto-grading and a percentile rank against everyone who took the same test. Now it's growing into a job-search companion with fresh listings every night. Live, with paying users and a real payment flow.",
     stack: ["Next.js", "Supabase", "Vercel"],
     image: "/images/kaarira.png",
     url: "https://kaarira.com",
-    accent: "blue",
+  },
+  {
+    slug: "sigedung",
+    title: "Sigedung",
+    description:
+      "Campus navigator for Telkom University. Students search a building by name or faculty and see it on the map, without asking around.",
+    stack: ["JavaScript", "Leaflet", "Vercel"],
+    image: "/images/sigedung.png",
+    url: "https://sigedung.vercel.app/",
   },
 ]
