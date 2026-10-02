@@ -15,6 +15,6 @@ export const projects = [
       "Campus navigator for Telkom University. Students search a building by name or faculty and see it on the map, without asking around.",
     stack: ["JavaScript", "Leaflet", "Vercel"],
     image: "/images/sigedung.png",
-    url: "https://sigedung.vercel.app/",
+    url: "https://sigedung.netlify.app/",
   },
 ]
